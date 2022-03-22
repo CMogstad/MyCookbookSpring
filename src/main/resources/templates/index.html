@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Cookbook</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css" type="text/css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default" style="background-color: black">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}" style="color: lightgreen;">My Cookbook</a>
+        </div>
+        <ul class="nav navbar-nav navbar-left">
+
+            <li><a th:href="@{/add}" class="btn btn-info" role="button" style="background-color: lightgreen; border: lightgreen">Add Recipe</a></li>
+        </ul>
+    </div>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Time</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <th:block th:each="recipe : ${recipeList}">
+        <tr>
+            <td th:text="${recipe.id}"></td>
+            <td th:text="${recipe.title}"></td>
+            <td th:text="${recipe.estimatedTime + ' min'}"></td>
+            <td>
+                <a th:href="@{/view(id=${recipe.id})}" class="btn btn-info" role="button" style="background-color: transparent; border-color: lightgreen; border-width: 2px">View</a>
+            </td>
+        </tr>
+    </th:block>
+
+
+    </tbody>
+
+</table>
+
+</body>
+</html>

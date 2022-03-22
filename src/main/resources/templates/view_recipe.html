@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Recipe</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css" type="text/css"/>
+</head>
+<body>
+
+<form th:action="@{/edit(id=${recipe.id})}" method="get" th:object="${recipe}">
+
+    <h1 style="text-align: center; margin-top: 10px" th:text="*{title}"></h1>
+
+
+    <img src="pannkaka.jpg"/>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <h5>Time</h5>
+                <p th:text="*{estimatedTime}"/>
+
+                <h5>Ingredients</h5>
+                <p th:text="*{ingredients}"/>
+
+                <a th:href="@{/edit(id=${recipe.id})}" class="btn btn-info" role="button" style="background-color: lightgreen; border-color: black" >Edit</a>
+                <a th:href="@{/}" class="btn btn-info" role="button" style="background-color: lightgreen; border-color: black">Back</a>
+            </div>
+            <div class="col">
+                <h5>Instructions</h5>
+                <p th:text="*{instructions}"/>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+</body>
+</html>
