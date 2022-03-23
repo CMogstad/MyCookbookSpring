@@ -2,6 +2,7 @@ package com.example.mycookbookspring.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -13,10 +14,9 @@ public class Recipe {
     private String title;
     private Integer estimatedTime;
     private String instructions;
-    private String ingredients;
 
-/*    @OneToMany
-    private ArrayList<Ingredient> ingredientsArray;*/
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Ingredient> ingredients;
 
     public void setId(Integer id) {
         this.id = id;
@@ -42,12 +42,12 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-   public String getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredients(List<Ingredient> ingredientsArray) {
+        this.ingredients = ingredientsArray;
     }
 
     public Integer getEstimatedTime() {

@@ -3,16 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Recipe</title>
+    <title>Edit</title>
     <link rel="stylesheet" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css" type="text/css"/>
 </head>
 <body>
 
-<form th:action="@{/add/recipe/save/newRecipe}" method="post" th:object="${recipe}">
+<form th:action="@{/update/recipe/save}" method="post" th:object="${recipe}">
 
-    <h2 style="margin-left: 30px; margin-top: 10px">Add Recipe</h2>
+    <h2 style="margin-left: 30px; margin-top: 10px">Edit Recipe</h2>
 
     <div class="container">
+        <div class="row" style="margin-top: 10px">
+            <label style="font-weight: bold">ID</label>
+            <input type="text" th:field="*{id}" style="width: 200px"/>
+        </div>
+
         <div class="row" style="margin-top: 10px">
             <label style="font-weight: bold">Title</label>
             <input type="text" th:field="*{title}" style="width: 200px"/>
@@ -34,9 +39,10 @@
             </button>
         </div>
     </div>
+
 </form>
 
-<a th:href="@{/add/recipe/add/ingredient}" class="btn btn-info" role="button"
+<a th:href="@{/update/recipe/add/ingredient}" class="btn btn-info" role="button"
    style="background-color: lightgreen; border-color: black">Add Ingredient</a>
 
 <table class="table table-striped">
@@ -44,6 +50,7 @@
     <tr>
         <th>Name</th>
         <th>Quantity</th>
+        <th></th>
     </tr>
     </thead>
 
@@ -54,16 +61,15 @@
             <td th:text="${ingredient.name}"></td>
             <td th:text="${ingredient.quantity}"></td>
             <td>
-                <a th:href="@{/add/recipe/update/ingredient(name=${ingredient.name})}" class="btn btn-info" role="button"
+                <a th:href="@{/update/recipe/update/ingredient(ingredientId=${ingredient.id})}" class="btn btn-info" role="button"
                    style="background-color: transparent; border-color: lightgreen; border-width: 2px">Edit</a>
-                <a th:href="@{/add/recipe/delete/ingredient(name=${ingredient.name})}" class="btn btn-info" role="button"
+                <a th:href="@{/update/recipe/delete/ingredient(ingredientId=${ingredient.id})}" class="btn btn-info" role="button"
                    style="background-color: transparent; border-color: lightgreen; border-width: 2px">Delete</a>
             </td>
         </tr>
     </th:block>
     </tbody>
 </table>
-
 
 </body>
 </html>

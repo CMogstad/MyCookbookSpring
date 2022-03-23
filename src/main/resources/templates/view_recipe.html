@@ -6,12 +6,11 @@
     <title>View Recipe</title>
     <link rel="stylesheet" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css" type="text/css"/>
 </head>
-<body>
+<tbody>
 
-<form th:action="@{/edit(id=${recipe.id})}" method="get" th:object="${recipe}">
+<form th:action="@{/editRecipe(recipeId=${recipe.id})}" method="get" th:object="${recipe}">
 
     <h1 style="text-align: center; margin-top: 10px" th:text="*{title}"></h1>
-
 
     <img src="pannkaka.jpg"/>
 
@@ -19,13 +18,7 @@
         <div class="row">
             <div class="col">
                 <h5>Time</h5>
-                <p th:text="*{estimatedTime}"/>
-
-                <h5>Ingredients</h5>
-                <p th:text="*{ingredients}"/>
-
-                <a th:href="@{/edit(id=${recipe.id})}" class="btn btn-info" role="button" style="background-color: lightgreen; border-color: black" >Edit</a>
-                <a th:href="@{/}" class="btn btn-info" role="button" style="background-color: lightgreen; border-color: black">Back</a>
+                <p th:text="*{estimatedTime} + ' min'"/>
             </div>
             <div class="col">
                 <h5>Instructions</h5>
@@ -34,7 +27,36 @@
         </div>
     </div>
 
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <th:block th:each="ingredient : ${ingredientList}">
+            <tr>
+                <td th:text="${ingredient.name}"></td>
+                <td th:text="${ingredient.quantity}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <a th:href="@{/}" class="btn btn-info" role="button"
+       style="background-color: lightgreen; border-color: black">Back</a>
+    <a th:href="@{/update/recipe(recipeId=${recipe.id})}" class="btn btn-info" role="button"
+       style="background-color: lightgreen; border-color: black">Edit</a>
+    <a th:href="@{/delete/recipe(recipeId=${recipe.id})}" class="btn btn-info" role="button"
+       style="background-color: lightgreen; border-color: black">Delete</a>
+
+
 </form>
 
-</body>
+
+
+
+</tbody>
 </html>

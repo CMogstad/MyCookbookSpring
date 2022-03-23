@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css" type="text/css"/>
+</head>
+<body>
+
+<form th:action="@{/add/recipe/update/ingredient/save}" method="post" th:object="${ingredient}">
+    <div class="row" style="margin-top: 10px">
+        <label style="font-weight: bold">Ingredients</label>
+
+        <label style="font-weight: bold">Name</label>
+        <input type="text" th:field="*{name}" style="width: 200px"/>
+
+        <label style="font-weight: bold">Quantity</label>
+        <input type="text" th:field="*{quantity}" style="width: 200px"/>
+    </div>
+
+    <button type="submit" class="btn btn-info" role="button" style="background-color: lightgreen; border: lightgreen; border-color: black">Save</button>
+</form>
+
+</body>
+</html>
